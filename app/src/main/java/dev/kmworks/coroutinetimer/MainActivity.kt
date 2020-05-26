@@ -38,7 +38,6 @@ class MainActivity : AppCompatActivity() {
 
         }
 
-
         viewModel.timer.observe(this, Observer {
             viewModel.countUpTimer()
         })

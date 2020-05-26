@@ -50,7 +50,7 @@ class MainActivityViewModel : ViewModel(), CoroutineScope {
 
     fun countUpTimer() {
         recursionJob = launch(Dispatchers.Main) {
-            delay(10)
+            delay(100)
             if (state.value == startTimer) {
                 val updateValue = timer.value!!.plus(1)
                 if (updateValue > _secondCount) {
@@ -69,7 +69,6 @@ class MainActivityViewModel : ViewModel(), CoroutineScope {
                     _timerProress.value = hashMap
                 }
             }
-
         }
     }
 
