@@ -1,8 +1,7 @@
-package dev.kichinaga.coroutinetimer
+package dev.kmworks.coroutinetimer
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.*
 import kotlin.coroutines.CoroutineContext
@@ -17,9 +16,7 @@ class MainActivityViewModel : ViewModel(), CoroutineScope {
         get() = Dispatchers.Main + job
 
     private val _state = MutableLiveData<Int>().also { it.value = 2 }
-    val state: LiveData<Int>
-        get() = _state
-
+    val state: LiveData<Int> get() = _state
     private val _timer: MutableLiveData<Int> by lazy { MutableLiveData<Int>() }
     private val _timerProress: MutableLiveData<MutableMap<Int, Int>> by lazy { MutableLiveData<MutableMap<Int, Int>>() }
 
@@ -29,10 +26,9 @@ class MainActivityViewModel : ViewModel(), CoroutineScope {
         get() = _timerProress
 
     fun changeTimerAction(changeState: Int, userId: Int, secondCount: Int) {
-
-       if(recursionJob!=null){
-           recursionJob!!.cancel()
-       }
+        recursionJob?.apply {
+            cancel()
+        }
         _secondCount = secondCount
         hashMap.clear()
         hashMap[userId] = 1
@@ -43,8 +39,8 @@ class MainActivityViewModel : ViewModel(), CoroutineScope {
     }
 
     fun changeTimerStop(changeState: Int) {
-        if(recursionJob!=null){
-            recursionJob!!.cancel()
+        recursionJob?.apply {
+            cancel()
         }
         hashMap.clear()
         hashMap[_userID] = 0
@@ -54,17 +50,16 @@ class MainActivityViewModel : ViewModel(), CoroutineScope {
 
     fun countUpTimer() {
         recursionJob = launch(Dispatchers.Main) {
-            delay(1000)
+            delay(10)
             if (state.value == startTimer) {
                 val updateValue = timer.value!!.plus(1)
                 if (updateValue > _secondCount) {
-                    if(recursionJob!=null){
-                        recursionJob!!.cancel()
+                    recursionJob?.apply {
+                        cancel()
                     }
                     _state.value = stopTimer
                     hashMap.clear()
                     hashMap[_userID] = 0
-                    //_timer.value = 1
                     _timerProress.value = hashMap
 
                 } else {

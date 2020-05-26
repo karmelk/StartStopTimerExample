@@ -1,14 +1,13 @@
-package dev.kichinaga.coroutinetimer
+package dev.kmworks.coroutinetimer
 
 
 import android.os.Bundle
-import android.util.Base64
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import dev.kichinaga.coroutinetimer.databinding.ActivityMainBinding
+import dev.kmworks.coroutinetimer.databinding.ActivityMainBinding
 import kotlinx.android.synthetic.main.activity_main.*
 
 
@@ -49,12 +48,6 @@ class MainActivity : AppCompatActivity() {
                 progressBar_user_three.progress = progress
                 Log.i("Milisecond", "$progress $userId")
             }
-            // progressBar_user_three.progress = it.
         })
-
-        viewModel.state.observe(this, Observer { timerState ->
-
-        })
-
     }
 }

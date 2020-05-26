@@ -6,7 +6,7 @@
     <data>
         <variable
                 name="viewModel"
-                type="dev.kichinaga.coroutinetimer.MainActivityViewModel"
+                type="dev.kmworks.coroutinetimer.MainActivityViewModel"
         />
     </data>
 

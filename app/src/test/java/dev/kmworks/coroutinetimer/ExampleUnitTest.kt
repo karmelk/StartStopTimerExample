@@ -1,4 +1,4 @@
-package dev.kichinaga.coroutinetimer
+package dev.kmworks.coroutinetimer
 
 import org.junit.Test
 

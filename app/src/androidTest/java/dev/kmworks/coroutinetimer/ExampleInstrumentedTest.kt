@@ -1,4 +1,4 @@
-package dev.kichinaga.coroutinetimer
+package dev.kmworks.coroutinetimer
 
 import androidx.test.InstrumentationRegistry
 import androidx.test.runner.AndroidJUnit4
